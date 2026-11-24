@@ -13,7 +13,15 @@ LINE = (
 )
 
 
+MAX_LINE_CHARS = 120
+
+
+def _validate_line() -> None:
+    assert len(LINE) <= MAX_LINE_CHARS, "line exceeds character limit"
+
+
 def main() -> None:
+    _validate_line()
     out_path = os.environ.get("ENTRY_OUTPUT", "/output/entry.txt")
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w", encoding="utf-8", newline="") as f:
